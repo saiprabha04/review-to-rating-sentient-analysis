@@ -1,0 +1,62 @@
+<div id="bg" style="background-color: rgb(165, 165, 165);"></div>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="blink">
+  <h1 style="font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: rgb(0, 0, 0);margin-top: 4ex;padding-right: 3ex;">Hello,{{user}}</h1>
+</div>
+<div class="container" style="padding-top:80px;padding-left: 200px;">
+    <div class="row">
+          <div class="card col-md-8 col-md-offset-2" style="background-color: rgb(200, 230, 172);margin-left: 40px;">
+            
+            <h1 style="font-weight: bold;color: rgb(251, 71, 47);">Hotel Search</h1>
+            <form method="GET" action="/searched">
+              <div class="form-group">
+                <label class="form-group-label text-muted" for="checkin" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;">Enter a Destination</label>
+                <input class="form-control" type="text" name="searchterm" placeholder="City..." style="margin-top: 2em;">
+                <label  class="text-muted" style="margin-top: 2em; font-family: Arial, Helvetica, sans-serif;font-weight: bold;">Travelers:</label>
+                <select  name="numtravelers" class="form-control" style="margin-bottom: 2em;">
+                  <option></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+                <input type="text" id="rangeDate" placeholder="Please select Date Range" data-input style="background-color: rgb(197, 230, 233);font-weight: bold;">
+                <br/>
+                <button type="submit" class="btn btn-primary"style='font-weight:bold'>Search</button>
+            </form>
+          </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script>
+$("#basicDate").flatpickr({
+    enableTime: true,
+    dateFormat: "F, d Y H:i"
+});
+
+$("#rangeDate").flatpickr({
+    mode: 'range',
+    dateFormat: "Y-m-d"
+});
+
+$("#timePicker").flatpickr({
+    enableTime: true,
+    noCalendar: true,
+    time_24hr: true,
+    dateFormat: "H:i",
+});
+
+$(".resetDate").flatpickr({
+    wrap: true,
+    weekNumbers: true,
+});
+
+</script>
+{% endblock %}

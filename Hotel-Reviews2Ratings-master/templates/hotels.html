@@ -1,0 +1,17 @@
+<div id="bg" style="background-image: url('static/imgs/bg.jpg');"></div>
+{%extends 'index.html'%}
+{% block content %}
+    {%for i in obj%}
+    <div class="container">
+        <div class="row" style="margin-top: 3em;">
+            <div class="card col-md-7">
+                <p style="color: black;font-family: Arial, Helvetica, sans-serif;">{{i.Name}}</p>
+                <div>
+                    <img src='{{i.ImagePath.url}}' style="height: 200px;width: 300px;">
+                    <p style="color: black;font-family: Arial, Helvetica, sans-serif;">{{i.Country}}-->{{i.City}}-->{{i.Address}}   </p>
+                </div>
+            </div>   
+        </div>
+    </div>
+    {%endfor%}
+{%endblock%}   

@@ -1,0 +1,10 @@
+<div id="bg" style="background-image: url('static/imgs/bigpool.jpg');"></div>
+{% extends 'index.html' %}
+{% block content %}
+<div class="title" style="top: 20%;left: 40%;color:rgb(0, 0, 0);position:absolute;">
+    <h1 style="font-size: 100px;font-weight: bold ;">Explore &nbsp;<i class="fa fa-search"></i></h1>
+</div>
+<div class="links"style="top:35%;left:50%;color:rgb(187, 255, 0);position:absolute;">
+    <a href="{% url 'signin'%}"style='font-family:Arial;font-size:30px;'>Hotels</a>
+</div>
+{% endblock %}

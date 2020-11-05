@@ -1,0 +1,74 @@
+<div id="bg" style="background-color: rgb(170, 168, 161);"></div>
+{%extends 'index.html'%}
+{% load static %}
+{% block content %}
+<div class="container" style="padding-left: 18%;padding-top: 5%;">
+<div class="row" style="margin-top: 1em;">
+    <div class="card col-md-1.9" style="height: 87px;">
+    <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: 70px;font-weight: bolder;color: rgb(0, 0, 0);background-color: rgb(170, 168, 161);">Results of your search</h1>
+</div>
+</div>
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="margin-right: 100%;margin-top:100px;">
+                <a class="btn btn-danger " href="{% url 'search'%}"  style="font-family: sans-serif;width: max-content;">&#8592;&nbsp;Back</a>    
+            </div>
+        </div>
+    </div>
+    
+    {% if searchitem %}
+    {%for i,j in zp%}
+    <div class="container">
+        <div class="row" style="margin-top: 2em;">
+            <div class="card col-md-6" style="height: 300px;">
+                <p style="color: black;font-family: Arial, Helvetica, sans-serif;text-align: start;"><a class="btn-warning" style="font-weight:bold;">{{i.Name}}</a></p>
+                <p style="color: black;font-family: Arial, Helvetica, sans-serif;text-align: start;">{{i.Country}}-->{{i.City}}-->{{i.Address}}</p>
+                <div> 
+                    {% if i.AvgReview %}
+                        {% if i.AvgReview == 1%}
+                            <img src="{% static 'imgs/1star.png' %}" style="float: right;margin-right: 80px;">
+                        {% elif i.AvgReview == 2%}
+                            <img src="{% static 'imgs/2star.png' %}" style="float: right;margin-right: 80px;">   
+                        {% elif i.AvgReview == 3%}
+                            <img src="{% static 'imgs/3star.png' %}" style="float: right;margin-right: 80px;">    
+                        {% elif i.AvgReview == 4%}
+                            <img src="{% static 'imgs/4star.png' %}" style="float: right;margin-right: 80px;">
+                        {% elif i.AvgReview == 5%}
+                            <img src="{% static 'imgs/5star.png' %}" style="float: right;margin-right: 80px;"> 
+                        {%endif%}   
+                    {%else%}
+                        <img src="{% static 'imgs/NR.png' %}" style="float: right;margin-right: 80px;">
+                    {%endif%}
+                    
+                <img src='{{i.ImagePath.url}}' style="float:left;height: 200px;width: 300px;">
+                <a onclick="fun()" class="btn btn-info btn-sm" style="margin-top:40px;margin-right: 72px;font-weight: bold;">Write a review</a>
+                <div id="P" style="visibility:visible;margin-top: 0.4em;">
+                    <form method="POST" action="{% url 'review' i.id%}">
+                        {%csrf_token%}
+                        <textarea name="ta"></textarea>
+                        <button type="submit" class="btn btn-success btn-sm" style="margin-right: 3em;margin-top: 0.5em;">submit</button>
+                    </form>                       
+                </div>
+                </div>
+            </div>  
+            <div class="card col-md-6 scroll" style="height: 300px;">
+                <div><h1>Customer Reviews:</h1></div>
+                {% for k,v in j.items %}
+                    {{v}}<br>
+                {%endfor%}
+            </div> 
+        </div>
+    </div>  
+    {%endfor%}
+    {%else%}
+    <div class="jumbotron" style="font-weight: bold;font-size: large;">No Results Found</div>
+    {% endif %}  
+    
+    <script>
+    function fun() {
+        var popup = document.querySelector("#P");
+        popup.style.visibility = "visible";
+    }
+    </script>
+{%endblock%}   

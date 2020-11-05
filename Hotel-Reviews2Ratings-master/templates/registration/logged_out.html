@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+<div class="container-fluid card" style="height : 9em;top:0;background-color: hsl(165, 94%, 52%);"><br>
+  <h1 style="font-weight: bold;">Successfully Logged Out</h1>
+    <h5 style="font-weight: bold;">You can <a href="{% url 'signin' %}">log-in again</a>.</h5>
+</div>
+{% endblock %}
